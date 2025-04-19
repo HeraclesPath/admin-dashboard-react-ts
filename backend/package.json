@@ -13,11 +13,7 @@
     "vercel-build": "echo hello"
   },
   "keywords": [],
-  "author": "Frans",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/fransachmadhw/react_admin_ui_v1.git"
-  },
+  "author": "Dante",
   "license": "MIT",
   "dependencies": {
     "cors": "^2.8.5",

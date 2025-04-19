@@ -15,7 +15,7 @@ interface topDealsUser {
 const TopDealsBox = () => {
   const tempTotalEntries = [1, 2, 3, 4, 5, 6, 7];
 
-  const { isLoading, isSuccess, data } = useQuery({
+  const { isLoading, isSuccess, data } = useQuery<topDealsUser[]>({
     queryKey: ['topdeals'],
     queryFn: fetchTopDeals,
   });
@@ -45,7 +45,7 @@ const TopDealsBox = () => {
         {isSuccess &&
           data.map((user: topDealsUser, index: number) => (
             <button
-              onClick={() => toast('Gabisa!', { icon: '😠' })}
+              onClick={() => toast('Oops! Nothing to display for this selection.', { icon: '😠' })}
               key={index}
               className="w-full flex justify-between items-center h-auto btn btn-ghost px-1 py-2"
             >

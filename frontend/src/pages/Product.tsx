@@ -13,6 +13,17 @@ import {
   ResponsiveContainer,
 } from 'recharts';
 
+// types/index.ts
+export interface Product {
+  id: string;
+  title: string;
+  img: string;
+  color: string;
+  price: string;
+  producer: string;
+  inStock: boolean;
+}
+
 const Product = () => {
   const tempEntries: number[] = [1, 2, 3, 4, 5];
   const dataLine = [
@@ -60,9 +71,7 @@ const Product = () => {
     },
   ];
 
-  // const [user, setUser] = React.useState();
   const { id } = useParams();
-  // const navigate = useNavigate();
 
   const { isLoading, isError, data, isSuccess } = useQuery({
     queryKey: ['user', id],
@@ -213,7 +222,7 @@ const Product = () => {
             <ul>
               <li>
                 <div className="ml-[1px] relative p-4 bg-base-200 dark:bg-neutral dark:text-neutral-50 min-w-[85vw] xl:min-w-[480px] flex flex-col items-start gap-3">
-                  <span>Frans AHW purchased {data.title}</span>
+                  <span>Dante purchased {data.title}</span>
                   <span className="text-xs">3 days ago</span>
                 </div>
               </li>

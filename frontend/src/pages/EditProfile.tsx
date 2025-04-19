@@ -25,13 +25,13 @@ const EditProfile = () => {
     fileInputRef.current?.click();
   };
 
-  const [firstName, setFirstName] = React.useState('Frans');
-  const [lastName, setLastName] = React.useState('AHW');
-  const [nickName, setNickName] = React.useState('Frans');
-  const [email, setEmail] = React.useState('franswinata6@gmail.com');
-  const [phone, setPhone] = React.useState('081-234-5678');
+  const [firstName, setFirstName] = React.useState('Dante');
+  const [lastName, setLastName] = React.useState('Nero');
+  const [nickName, setNickName] = React.useState('Dante');
+  const [email, setEmail] = React.useState('brandonjasonsligh@gmail.com');
+  const [phone, setPhone] = React.useState('201-773-1757');
   const [address, setAddress] = React.useState(
-    'Suite 948 Jl. Gajahmada No. 91, Malang, SM 74810'
+    '371 Bergen Blvd, Fairview, NJ 07022'
   );
 
   return (
@@ -54,7 +54,7 @@ const EditProfile = () => {
             <button
               onClick={() => {
                 navigate('/profile');
-                toast('Gabisa diedit dong!', { icon: '😛' });
+                toast('Oops! Nothing to display for this selection.', { icon: '😛' });
               }}
               className="btn btn-block xl:w-auto btn-primary"
             >

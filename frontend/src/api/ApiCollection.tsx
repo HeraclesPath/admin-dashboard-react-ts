@@ -3,7 +3,7 @@ import axios from 'axios';
 // GET TOP DEALS
 export const fetchTopDeals = async () => {
   const response = await axios
-    .get('https://react-admin-ui-v1-api.vercel.app/topdeals')
+    .get('http://localhost:5000/topdeals')
     .then((res) => {
       console.log('axios get:', res.data);
       return res.data;
@@ -19,7 +19,7 @@ export const fetchTopDeals = async () => {
 // GET TOTAL USERS
 export const fetchTotalUsers = async () => {
   const response = await axios
-    .get('https://react-admin-ui-v1-api.vercel.app/totalusers')
+    .get('http://localhost:5000/totalusers')
     .then((res) => {
       console.log('axios get:', res.data);
       return res.data;
@@ -35,7 +35,7 @@ export const fetchTotalUsers = async () => {
 // GET TOTAL PRODUCTS
 export const fetchTotalProducts = async () => {
   const response = await axios
-    .get('https://react-admin-ui-v1-api.vercel.app/totalproducts')
+    .get('http://localhost:5000/totalproducts')
     .then((res) => {
       console.log('axios get:', res.data);
       return res.data;
@@ -51,7 +51,7 @@ export const fetchTotalProducts = async () => {
 // GET TOTAL RATIO
 export const fetchTotalRatio = async () => {
   const response = await axios
-    .get('https://react-admin-ui-v1-api.vercel.app/totalratio')
+    .get('http://localhost:5000/totalratio')
     .then((res) => {
       console.log('axios get:', res.data);
       return res.data;
@@ -67,7 +67,7 @@ export const fetchTotalRatio = async () => {
 // GET TOTAL REVENUE
 export const fetchTotalRevenue = async () => {
   const response = await axios
-    .get('https://react-admin-ui-v1-api.vercel.app/totalrevenue')
+    .get('http://localhost:5000/totalrevenue')
     .then((res) => {
       console.log('axios get:', res.data);
       return res.data;
@@ -83,7 +83,7 @@ export const fetchTotalRevenue = async () => {
 // GET TOTAL SOURCE
 export const fetchTotalSource = async () => {
   const response = await axios
-    .get('https://react-admin-ui-v1-api.vercel.app/totalsource')
+    .get('http://localhost:5000/totalsource')
     .then((res) => {
       console.log('axios get:', res.data);
       return res.data;
@@ -99,7 +99,7 @@ export const fetchTotalSource = async () => {
 // GET TOTAL VISIT
 export const fetchTotalVisit = async () => {
   const response = await axios
-    .get('https://react-admin-ui-v1-api.vercel.app/totalvisit')
+    .get('http://localhost:5000/totalvisit')
     .then((res) => {
       console.log('axios get:', res.data);
       return res.data;
@@ -116,7 +116,7 @@ export const fetchTotalVisit = async () => {
 export const fetchTotalRevenueByProducts = async () => {
   const response = await axios
     .get(
-      'https://react-admin-ui-v1-api.vercel.app/totalrevenue-by-product'
+      'http://localhost:5000/totalrevenue-by-product'
     )
     .then((res) => {
       console.log('axios get:', res.data);
@@ -133,7 +133,7 @@ export const fetchTotalRevenueByProducts = async () => {
 // GET TOTAL PROFIT
 export const fetchTotalProfit = async () => {
   const response = await axios
-    .get('https://react-admin-ui-v1-api.vercel.app/totalprofit')
+    .get('http://localhost:5000/totalprofit')
     .then((res) => {
       console.log('axios get:', res.data);
       return res.data;
@@ -149,7 +149,7 @@ export const fetchTotalProfit = async () => {
 // GET ALL USERS
 export const fetchUsers = async () => {
   const response = await axios
-    .get('https://react-admin-ui-v1-api.vercel.app/users')
+    .get('http://localhost:5000/users')
     .then((res) => {
       console.log('axios get:', res.data);
       return res.data;
@@ -165,7 +165,7 @@ export const fetchUsers = async () => {
 // GET SINGLE USER
 export const fetchSingleUser = async (id: string) => {
   const response = await axios
-    .get(`https://react-admin-ui-v1-api.vercel.app/users/${id}`)
+    .get(`http://localhost:5000/users/${id}`)
     .then((res) => {
       console.log('axios get:', res.data);
       return res.data;
@@ -181,7 +181,7 @@ export const fetchSingleUser = async (id: string) => {
 // GET ALL PRODUCTS
 export const fetchProducts = async () => {
   const response = await axios
-    .get('https://react-admin-ui-v1-api.vercel.app/products')
+    .get('http://localhost:5000/products')
     .then((res) => {
       console.log('axios get:', res.data);
       return res.data;
@@ -197,7 +197,7 @@ export const fetchProducts = async () => {
 // GET SINGLE PRODUCT
 export const fetchSingleProduct = async (id: string) => {
   const response = await axios
-    .get(`https://react-admin-ui-v1-api.vercel.app/products/${id}`)
+    .get(`http://localhost:5000/products/${id}`)
     .then((res) => {
       console.log('axios get:', res.data);
       return res.data;
@@ -213,7 +213,7 @@ export const fetchSingleProduct = async (id: string) => {
 // GET ALL ORDERS
 export const fetchOrders = async () => {
   const response = await axios
-    .get('https://react-admin-ui-v1-api.vercel.app/orders')
+    .get('http://localhost:5000/orders')
     .then((res) => {
       console.log('axios get:', res.data);
       return res.data;
@@ -229,7 +229,7 @@ export const fetchOrders = async () => {
 // GET ALL POSTS
 export const fetchPosts = async () => {
   const response = await axios
-    .get('https://react-admin-ui-v1-api.vercel.app/posts')
+    .get('http://localhost:5000/posts')
     .then((res) => {
       console.log('axios get:', res.data);
       return res.data;
@@ -245,7 +245,7 @@ export const fetchPosts = async () => {
 // GET ALL NOTES
 export const fetchNotes = async () => {
   const response = await axios
-    .get(`https://react-admin-ui-v1-api.vercel.app/notes?q=`)
+    .get(`http://localhost:5000/notes?q=`)
     .then((res) => {
       console.log('axios get:', res.data);
       return res.data;
@@ -261,7 +261,7 @@ export const fetchNotes = async () => {
 // GET ALL LOGS
 export const fetchLogs = async () => {
   const response = await axios
-    .get(`https://react-admin-ui-v1-api.vercel.app/logs`)
+    .get(`http://localhost:5000/logs`)
     .then((res) => {
       console.log('axios get:', res.data);
       return res.data;

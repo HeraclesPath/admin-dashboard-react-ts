@@ -36,7 +36,7 @@ const Profile = () => {
           </div>
           <div className="flex flex-col items-start gap-1">
             <h3 className="font-semibold text-xl xl:text-3xl">
-              Frans AHW
+              Dante
             </h3>
             <span className="font-normal text-base">Supervisor</span>
           </div>
@@ -62,9 +62,9 @@ const Profile = () => {
               </div>
               {/* column 1 text */}
               <div className="col-span-2 flex flex-col items-start xl:gap-5">
-                <span className="font-semibold">Frans</span>
-                <span className="font-semibold">AHW</span>
-                <span className="font-semibold">Frans</span>
+                <span className="font-semibold">Dante</span>
+                <span className="font-semibold">Nero</span>
+                <span className="font-semibold">Nightfury</span>
               </div>
             </div>
             {/* column 2 */}
@@ -78,11 +78,11 @@ const Profile = () => {
               {/* column 2 text */}
               <div className="col-span-2 flex flex-col items-start xl:gap-5">
                 <span className="font-semibold">
-                  franswinata6@gmail.com
+                  brandonjasonsligh@gmail.com
                 </span>
-                <span className="font-semibold">081-234-5678</span>
+                <span className="font-semibold">201-773-1757</span>
                 <span className="font-semibold">
-                  Suite 948 Jl. Gajahmada No. 91, Malang, SM 74810
+                  371 Bergen Blvd, Fairview, NJ 07022
                 </span>
               </div>
             </div>
