@@ -62,6 +62,3 @@ And then, the app can be accessed from [http://localhost:5173/](http://localhost
 
 React Admin UI requires a **Node version higher or equal to 20.11.0 LTS**. Have a look at the `dependencies` and `devDependencies` section in the _package.json_ inside [backend](/backend/package.json) and [frontend](/frontend/package.json) to find the **current list of the requirements** of React Admin UI.
 
-## 📘&nbsp; License
-
-React Admin Dashboard UI Prototype is released under the terms of the [BSD-3-Clause](LICENSE).
