@@ -1,9 +1,8 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { GridColDef } from '@mui/x-data-grid';
 import DataTable from '../components/DataTable';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-// import AddData from '../components/AddData';
 import { fetchPosts } from '../api/ApiCollection';
 import {
   HiOutlineGlobeAmericas,
@@ -11,7 +10,6 @@ import {
 } from 'react-icons/hi2';
 
 const Posts = () => {
-  // const [isOpen, setIsOpen] = React.useState(false);
   const { isLoading, isError, isSuccess, data } = useQuery({
     queryKey: ['allorders'],
     queryFn: fetchPosts,
@@ -162,7 +160,7 @@ const Posts = () => {
     },
   ];
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isLoading) {
       toast.loading('Loading...', { id: 'promisePosts' });
     }
@@ -192,14 +190,6 @@ const Posts = () => {
               </span>
             )}
           </div>
-          {/* <button
-            onClick={() => setIsOpen(true)}
-            className={`btn ${
-              isLoading ? 'btn-disabled' : 'btn-primary'
-            }`}
-          >
-            Add New Order +
-          </button> */}
         </div>
         {isLoading ? (
           <DataTable
@@ -228,14 +218,6 @@ const Posts = () => {
             </div>
           </>
         )}
-
-        {/* {isOpen && (
-          <AddData
-            slug={'user'}
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-          />
-        )} */}
       </div>
     </div>
   );

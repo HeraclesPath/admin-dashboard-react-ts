@@ -32,7 +32,7 @@ const Navbar = () => {
 
   return (
     // navbar screen
-    <div className="fixed z-[3] top-0 left-0 right-0 bg-base-100 w-full flex justify-between px-3 xl:px-4 py-3 xl:py-5 gap-4 xl:gap-0">
+    <div className="fixed z-[3] top-0 left-0 right-0 bg-base-100 border-b border-base-300 shadow-sm w-full flex justify-between px-3 xl:px-4 py-3 xl:py-5 gap-4 xl:gap-0">
       {/* container */}
       <div className="flex gap-3 items-center">
         {/* for mobile */}

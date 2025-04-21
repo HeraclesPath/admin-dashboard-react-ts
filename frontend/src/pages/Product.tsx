@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useQuery } from '@tanstack/react-query';
@@ -78,7 +78,7 @@ const Product = () => {
     queryFn: () => fetchSingleProduct(id || ''),
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isLoading) {
       toast.loading('Loading...', { id: 'promiseRead' });
     }

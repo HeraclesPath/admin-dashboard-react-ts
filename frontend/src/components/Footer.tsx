@@ -3,7 +3,7 @@ import { DiReact } from 'react-icons/di';
 
 const Footer = () => {
   return (
-    <div className="w-full px-5 py-5 xl:m-0 mt-5 flex justify-between gap-2 font-semibold xl:text-sm">
+    <div className="w-full px-5 py-5 mt-5 xl:m-0 flex justify-between items-center gap-2 font-semibold xl:text-sm border-t border-base-300 bg-base-100">
       <span className="hidden xl:inline-flex text-sm">
         Admin Dashboard
       </span>

@@ -5,7 +5,6 @@ export const fetchTopDeals = async () => {
   const response = await axios
     .get('http://localhost:5000/topdeals')
     .then((res) => {
-      console.log('axios get:', res.data);
       return res.data;
     })
     .catch((err) => {
@@ -21,7 +20,6 @@ export const fetchTotalUsers = async () => {
   const response = await axios
     .get('http://localhost:5000/totalusers')
     .then((res) => {
-      console.log('axios get:', res.data);
       return res.data;
     })
     .catch((err) => {
@@ -37,7 +35,6 @@ export const fetchTotalProducts = async () => {
   const response = await axios
     .get('http://localhost:5000/totalproducts')
     .then((res) => {
-      console.log('axios get:', res.data);
       return res.data;
     })
     .catch((err) => {
@@ -53,7 +50,6 @@ export const fetchTotalRatio = async () => {
   const response = await axios
     .get('http://localhost:5000/totalratio')
     .then((res) => {
-      console.log('axios get:', res.data);
       return res.data;
     })
     .catch((err) => {
@@ -69,7 +65,6 @@ export const fetchTotalRevenue = async () => {
   const response = await axios
     .get('http://localhost:5000/totalrevenue')
     .then((res) => {
-      console.log('axios get:', res.data);
       return res.data;
     })
     .catch((err) => {
@@ -85,7 +80,6 @@ export const fetchTotalSource = async () => {
   const response = await axios
     .get('http://localhost:5000/totalsource')
     .then((res) => {
-      console.log('axios get:', res.data);
       return res.data;
     })
     .catch((err) => {
@@ -101,7 +95,6 @@ export const fetchTotalVisit = async () => {
   const response = await axios
     .get('http://localhost:5000/totalvisit')
     .then((res) => {
-      console.log('axios get:', res.data);
       return res.data;
     })
     .catch((err) => {
@@ -119,7 +112,6 @@ export const fetchTotalRevenueByProducts = async () => {
       'http://localhost:5000/totalrevenue-by-product'
     )
     .then((res) => {
-      console.log('axios get:', res.data);
       return res.data;
     })
     .catch((err) => {
@@ -135,7 +127,6 @@ export const fetchTotalProfit = async () => {
   const response = await axios
     .get('http://localhost:5000/totalprofit')
     .then((res) => {
-      console.log('axios get:', res.data);
       return res.data;
     })
     .catch((err) => {
@@ -151,7 +142,6 @@ export const fetchUsers = async () => {
   const response = await axios
     .get('http://localhost:5000/users')
     .then((res) => {
-      console.log('axios get:', res.data);
       return res.data;
     })
     .catch((err) => {
@@ -167,7 +157,6 @@ export const fetchSingleUser = async (id: string) => {
   const response = await axios
     .get(`http://localhost:5000/users/${id}`)
     .then((res) => {
-      console.log('axios get:', res.data);
       return res.data;
     })
     .catch((err) => {
@@ -183,7 +172,6 @@ export const fetchProducts = async () => {
   const response = await axios
     .get('http://localhost:5000/products')
     .then((res) => {
-      console.log('axios get:', res.data);
       return res.data;
     })
     .catch((err) => {
@@ -199,7 +187,6 @@ export const fetchSingleProduct = async (id: string) => {
   const response = await axios
     .get(`http://localhost:5000/products/${id}`)
     .then((res) => {
-      console.log('axios get:', res.data);
       return res.data;
     })
     .catch((err) => {
@@ -215,7 +202,6 @@ export const fetchOrders = async () => {
   const response = await axios
     .get('http://localhost:5000/orders')
     .then((res) => {
-      console.log('axios get:', res.data);
       return res.data;
     })
     .catch((err) => {
@@ -231,7 +217,6 @@ export const fetchPosts = async () => {
   const response = await axios
     .get('http://localhost:5000/posts')
     .then((res) => {
-      console.log('axios get:', res.data);
       return res.data;
     })
     .catch((err) => {
@@ -247,7 +232,6 @@ export const fetchNotes = async () => {
   const response = await axios
     .get(`http://localhost:5000/notes?q=`)
     .then((res) => {
-      console.log('axios get:', res.data);
       return res.data;
     })
     .catch((err) => {
@@ -263,7 +247,6 @@ export const fetchLogs = async () => {
   const response = await axios
     .get(`http://localhost:5000/logs`)
     .then((res) => {
-      console.log('axios get:', res.data);
       return res.data;
     })
     .catch((err) => {

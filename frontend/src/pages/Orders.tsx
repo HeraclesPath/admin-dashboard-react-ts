@@ -3,11 +3,9 @@ import { GridColDef } from '@mui/x-data-grid';
 import DataTable from '../components/DataTable';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-// import AddData from '../components/AddData';
 import { fetchOrders } from '../api/ApiCollection';
 
 const Orders = () => {
-  // const [isOpen, setIsOpen] = React.useState(false);
   const { isLoading, isError, isSuccess, data } = useQuery({
     queryKey: ['allorders'],
     queryFn: fetchOrders,

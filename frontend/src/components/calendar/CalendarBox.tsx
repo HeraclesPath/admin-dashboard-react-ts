@@ -1,7 +1,7 @@
-import React from 'react';
+import { useState } from 'react';
 import {
-  EventApi,
   DateSelectArg,
+  EventApi,
   EventClickArg,
   EventContentArg,
   formatDate,
@@ -10,24 +10,15 @@ import FullCalendar from '@fullcalendar/react';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import interactionPlugin from '@fullcalendar/interaction';
-// import listPlugin from '@fullcalendar/list';
 import { INITIAL_EVENTS, createEventId } from './CalendarUtils';
 
-// interface CalendarBoxProps {
-//   weekendsVisible: boolean;
-//   currentEvents: EventApi[];
-// }
-
-const CalendarBox: React.FC = () => {
-  const [currentEvents, setCurrentEvents] = React.useState<
-    EventApi[]
-  >([]);
+const CalendarBox = () => {
+  const [currentEvents, setCurrentEvents] = useState<EventApi[]>([]);
 
   const handleDateSelect = (selectInfo: DateSelectArg) => {
     const title = prompt('Please enter a new title for your event');
     const calendarApi = selectInfo.view.calendar;
-
-    calendarApi.unselect(); // clear date selection
+    calendarApi.unselect();
 
     if (title) {
       calendarApi.addEvent({
@@ -41,125 +32,80 @@ const CalendarBox: React.FC = () => {
   };
 
   const handleEventClick = (clickInfo: EventClickArg) => {
-    if (
-      confirm(
-        `Are you sure you want to delete the event '${clickInfo.event.title}'`
-      )
-    ) {
+    if (confirm(`Delete the event '${clickInfo.event.title}'?`)) {
       clickInfo.event.remove();
     }
   };
 
-  const handleEvents = (events: EventApi[]) => {
-    setCurrentEvents(events);
-  };
+  const renderEventContent = ({ timeText, event }: EventContentArg) => (
+    <div className="mx-1 flex gap-1 text-ellipsis overflow-hidden">
+      <b>{timeText}</b>
+      <i>{event.title}</i>
+    </div>
+  );
 
-  const renderEventContent = (eventContent: EventContentArg) => {
-    return (
-      <div className="mx-1 flex gap-1 text-ellipsis overflow-hidden">
-        <b>{eventContent.timeText}</b>
-        <i>{eventContent.event.title}</i>
+  const renderSidebarEvent = (event: EventApi) => (
+    <div
+      key={event.id}
+      className="w-full flex flex-col items-start gap-3 p-3 bg-base-200 dark:bg-neutral dark:text-neutral-content rounded-lg"
+    >
+      <div className="flex flex-wrap gap-2">
+        <b>{formatDate(event.start!, { year: 'numeric', month: 'short', day: 'numeric' })}</b>
+        {event.end && <span className="whitespace-nowrap">until</span>}
+        {event.end && (
+          <b>{formatDate(event.end!, { year: 'numeric', month: 'short', day: 'numeric' })}</b>
+        )}
       </div>
-    );
-  };
-
-  const renderSidebarEvent = (event: EventApi) => {
-    return (
-      <div
-        className="w-full flex flex-col items-start gap-3 p-3 bg-base-200 dark:bg-neutral dark:text-neutral-content rounded-lg"
-        key={event.id}
-      >
-        <div className="flex flex-wrap gap-2">
-          <b>
-            {formatDate(event.start!, {
-              year: 'numeric',
-              month: 'short',
-              day: 'numeric',
-            })}
-          </b>
-          {event.end && (
-            <div className="whitespace-nowrap">until</div>
-          )}
-          <b>
-            {formatDate(event.end!, {
-              year: 'numeric',
-              month: 'short',
-              day: 'numeric',
-            })}
-          </b>
-        </div>
-        <div>{event.title}</div>
-      </div>
-    );
-  };
+      <div>{event.title}</div>
+    </div>
+  );
 
   return (
     <div className="w-full flex flex-col xl:flex-row gap-5 xl:gap-0">
-      {/* sidebar */}
-      <div className="xl:w-[200px] 2xl:w-[250px] flex flex-col items-start xl:mr-4 gap-4">
-        {/* heading */}
+      {/* Sidebar */}
+      <aside className="xl:w-[200px] 2xl:w-[250px] flex flex-col items-start xl:mr-4 gap-4">
         <h3>Events</h3>
+
         <div className="hidden xl:flex w-full flex-col items-start gap-3">
           {currentEvents.map(renderSidebarEvent)}
         </div>
+
         <div className="carousel w-full xl:hidden rounded-lg gap-3">
           {currentEvents.map((event) => (
             <div
-              className="carousel-item flex-col items-start gap-3 p-3 bg-base-200 dark:bg-neutral dark:text-neutral-content rounded-lg"
               key={event.id}
+              className="carousel-item flex-col items-start gap-3 p-3 bg-base-200 dark:bg-neutral dark:text-neutral-content rounded-lg"
             >
               <div className="flex flex-wrap gap-2">
-                <b>
-                  {formatDate(event.start!, {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                  })}
-                </b>
+                <b>{formatDate(event.start!, { year: 'numeric', month: 'short', day: 'numeric' })}</b>
+                {event.end && <span className="whitespace-nowrap">until</span>}
                 {event.end && (
-                  <div className="whitespace-nowrap">until</div>
+                  <b>{formatDate(event.end!, { year: 'numeric', month: 'short', day: 'numeric' })}</b>
                 )}
-                <b>
-                  {formatDate(event.end!, {
-                    year: 'numeric',
-                    month: 'short',
-                    day: 'numeric',
-                  })}
-                </b>
               </div>
               <div className="line-clamp-1">{event.title}</div>
             </div>
           ))}
         </div>
-      </div>
+      </aside>
 
-      {/* calendar */}
-      <div className="grow h-[85vh] xl:h-auto 3xl:h-[80vh]">
+      {/* Calendar */}
+      <section className="grow h-[85vh] xl:h-auto 3xl:h-[80vh]">
         <FullCalendar
           height="100%"
           plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-          // headerToolbar={{
-          //   left: 'prev,next today',
-          //   center: 'title',
-          //   right: 'dayGridMonth,timeGridWeek,timeGridDay',
-          // }}
           initialView="dayGridMonth"
-          editable={true}
-          selectable={true}
-          selectMirror={true}
-          dayMaxEvents={true}
-          initialEvents={INITIAL_EVENTS} // alternatively, use the `events` setting to fetch from a feed
+          editable
+          selectable
+          selectMirror
+          dayMaxEvents
+          initialEvents={INITIAL_EVENTS}
           select={handleDateSelect}
-          eventContent={renderEventContent} // custom render function
+          eventContent={renderEventContent}
           eventClick={handleEventClick}
-          eventsSet={handleEvents} // called after events are initialized/added/changed/removed
-          /* you can update a remote database when these fire:
-          eventAdd={function(){}}
-          eventChange={function(){}}
-          eventRemove={function(){}}
-          */
+          eventsSet={setCurrentEvents}
         />
-      </div>
+      </section>
     </div>
   );
 };

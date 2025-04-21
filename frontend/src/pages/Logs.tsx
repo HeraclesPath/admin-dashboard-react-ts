@@ -1,12 +1,12 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { GridColDef } from '@mui/x-data-grid';
-import DataTable from '../components/DataTable';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+import DataTable from '../components/DataTable';
 import { fetchLogs } from '../api/ApiCollection';
 
 const Logs = () => {
-  const { isLoading, isError, isSuccess, data } = useQuery({
+  const { isLoading, isError, isSuccess, data = [] } = useQuery({
     queryKey: ['all-logs'],
     queryFn: fetchLogs,
   });
@@ -18,95 +18,50 @@ const Logs = () => {
       headerName: 'Name',
       minWidth: 220,
       flex: 1,
-      renderCell: (params) => {
-        return (
-          <div className="flex gap-3 py-[6px] items-center">
-            <div className="avatar">
-              <div className="w-6 xl:w-9 rounded-full">
-                <img
-                  src={params.row.img || '/Portrait_Placeholder.png'}
-                  alt="user-picture"
-                />
-              </div>
+      renderCell: ({ row }) => (
+        <div className="flex gap-3 py-[6px] items-center">
+          <div className="avatar">
+            <div className="w-6 xl:w-9 rounded-full">
+              <img
+                src={row.img || '/Portrait_Placeholder.png'}
+                alt="user-picture"
+              />
             </div>
-            <span className="mb-0 pb-0 leading-none">
-              {params.row.firstName} {params.row.lastName}
-            </span>
           </div>
-        );
-      },
+          <span className="mb-0 pb-0 leading-none">
+            {row.firstName} {row.lastName}
+          </span>
+        </div>
+      ),
     },
-    {
-      field: 'role',
-      headerName: 'Role',
-      minWidth: 100,
-      type: 'string',
-      flex: 1,
-    },
-    {
-      field: 'email',
-      type: 'string',
-      headerName: 'Email',
-      minWidth: 200,
-      flex: 1,
-    },
-    {
-      field: 'date',
-      headerName: 'Date',
-      minWidth: 120,
-      type: 'string',
-      flex: 1,
-    },
-    {
-      field: 'time',
-      headerName: 'Time',
-      minWidth: 100,
-      type: 'string',
-      flex: 1,
-    },
+    { field: 'role', headerName: 'Role', minWidth: 100, flex: 1 },
+    { field: 'email', headerName: 'Email', minWidth: 200, flex: 1 },
+    { field: 'date', headerName: 'Date', minWidth: 120, flex: 1 },
+    { field: 'time', headerName: 'Time', minWidth: 100, flex: 1 },
     {
       field: 'action',
       headerName: 'Action',
       minWidth: 350,
-      type: 'string',
       flex: 1,
-      renderCell: (params) => {
-        return (
-          <div className="flex whitespace-normal">
-            {params.row.action}
-          </div>
-        );
-      },
+      renderCell: ({ row }) => <div className="flex whitespace-normal">{row.action}</div>,
     },
   ];
 
-  React.useEffect(() => {
-    if (isLoading) {
-      toast.loading('Loading...', { id: 'promiseLogs' });
-    }
-    if (isError) {
-      toast.error('Error while getting the data!', {
-        id: 'promiseLogs',
-      });
-    }
-    if (isSuccess) {
-      toast.success('Got the data successfully!', {
-        id: 'promiseLogs',
-      });
-    }
-  }, [isError, isLoading, isSuccess]);
+  useEffect(() => {
+    if (isLoading) toast.loading('Loading...', { id: 'promiseLogs' });
+    if (isError) toast.error('Error while getting the data!', { id: 'promiseLogs' });
+    if (isSuccess) toast.success('Got the data successfully!', { id: 'promiseLogs' });
+  }, [isLoading, isError, isSuccess]);
+
   return (
-    // screen
-    <div className="w-full p-0 m-0">
-      {/* container */}
-      <div className="w-full flex flex-col items-stretch gap-3">
-        {/* block 1 */}
+    <div className="w-full">
+      <div className="w-full flex flex-col gap-3">
         <div className="w-full flex justify-between mb-5">
-          <div className="flex gap-1 justify-start flex-col items-start">
-            <h2 className="font-bold text-2xl xl:text-4xl mt-0 pt-0 text-base-content dark:text-neutral-200">
+          <div className="flex flex-col items-start gap-1">
+            <h2 className="font-bold text-2xl xl:text-4xl text-base-content dark:text-neutral-200">
               Logs
             </h2>
-            {data && data.length > 0 && (
+            {data.length > 0 && (
               <span className="text-neutral dark:text-neutral-content font-medium text-base">
                 {data.length} Logs Found
               </span>
@@ -114,33 +69,17 @@ const Logs = () => {
           </div>
         </div>
 
-        {/* table */}
-        {isLoading ? (
-          <DataTable
-            slug="logs"
-            columns={columns}
-            rows={[]}
-            includeActionColumn={false}
-          />
-        ) : isSuccess ? (
-          <DataTable
-            slug="logs"
-            columns={columns}
-            rows={data}
-            includeActionColumn={false}
-          />
-        ) : (
-          <>
-            <DataTable
-              slug="logs"
-              columns={columns}
-              rows={[]}
-              includeActionColumn={false}
-            />
-            <div className="w-full flex justify-center">
-              Error while getting the data!
-            </div>
-          </>
+        <DataTable
+          slug="logs"
+          columns={columns}
+          rows={isSuccess ? data : []}
+          includeActionColumn={false}
+        />
+
+        {isError && (
+          <div className="w-full flex justify-center text-error">
+            Error while getting the data!
+          </div>
         )}
       </div>
     </div>

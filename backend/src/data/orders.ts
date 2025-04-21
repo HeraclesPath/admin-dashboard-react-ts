@@ -15,7 +15,7 @@ const orders = [
   {
     id: 2,
     product:
-      'https://img.productz.com/review_image/102489/preview_sony-kdl-50w800b-50-inch-hdtv-review-superb-picture-102489.png',
+      'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGcab3ZRVoLYLdjTdaJptGaWfTbtH9iD4QPg&s',
     title: 'Sony Bravia KDL-47W805A',
     profile:
       'https://images.pexels.com/photos/761977/pexels-photo-761977.jpeg?auto=compress&cs=tinysrgb&w=1600',

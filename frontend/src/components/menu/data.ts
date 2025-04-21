@@ -98,12 +98,6 @@ export const menu = [
   {
     catalog: 'miscellaneous',
     listItems: [
-      // {
-      //   isLink: true,
-      //   url: '/settings',
-      //   icon: IoSettingsOutline,
-      //   label: 'settings',
-      // },
       {
         isLink: true,
         url: '/login',

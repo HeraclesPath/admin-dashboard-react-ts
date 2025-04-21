@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useQuery } from '@tanstack/react-query';
@@ -60,16 +60,14 @@ const User = () => {
     },
   ];
 
-  // const [user, setUser] = React.useState();
   const { id } = useParams();
-  // const navigate = useNavigate();
 
   const { isLoading, isError, data, isSuccess } = useQuery({
     queryKey: ['user', id],
     queryFn: () => fetchSingleUser(id || ''),
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isLoading) {
       toast.loading('Loading...', { id: 'promiseRead' });
     }

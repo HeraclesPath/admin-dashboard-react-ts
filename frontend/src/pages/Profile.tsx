@@ -1,10 +1,10 @@
-import React from 'react';
+import { useRef } from 'react';
 import toast from 'react-hot-toast';
 import { HiOutlinePencil, HiOutlineTrash } from 'react-icons/hi2';
 import { useNavigate } from 'react-router-dom';
 
 const Profile = () => {
-  const modalDelete = React.useRef<HTMLDialogElement>(null);
+  const modalDelete = useRef<HTMLDialogElement>(null);
   const navigate = useNavigate();
 
   return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { GridColDef } from '@mui/x-data-grid';
 import DataTable from '../components/DataTable';
 import { fetchProducts } from '../api/ApiCollection';
@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 import AddData from '../components/AddData';
 
 const Products = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const { isLoading, isError, isSuccess, data } = useQuery({
     queryKey: ['allproducts'],
     queryFn: fetchProducts,
@@ -37,12 +37,6 @@ const Products = () => {
         );
       },
     },
-    // {
-    //   field: 'title',
-    //   type: 'string',
-    //   headerName: 'Title',
-    //   width: 250,
-    // },
     {
       field: 'color',
       type: 'string',
@@ -80,7 +74,7 @@ const Products = () => {
     },
   ];
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isLoading) {
       toast.loading('Loading...', { id: 'promiseProducts' });
     }
@@ -112,9 +106,7 @@ const Products = () => {
           </div>
           <button
             onClick={() => setIsOpen(true)}
-            className={`btn ${
-              isLoading ? 'btn-disabled' : 'btn-primary'
-            }`}
+            className={`btn ${isLoading ? 'btn-disabled' : 'btn-primary'}`}
           >
             Add New Product +
           </button>

@@ -1,10 +1,8 @@
-// import React from 'react'
 import toast from 'react-hot-toast';
-// import { topDealUsers } from './data';
 import { useQuery } from '@tanstack/react-query';
 import { fetchTopDeals } from '../../api/ApiCollection';
 
-interface topDealsUser {
+interface TopDealsUser {
   id: number;
   img: string;
   username: string;
@@ -13,9 +11,9 @@ interface topDealsUser {
 }
 
 const TopDealsBox = () => {
-  const tempTotalEntries = [1, 2, 3, 4, 5, 6, 7];
+  const placeholderItems = Array.from({ length: 7 });
 
-  const { isLoading, isSuccess, data } = useQuery<topDealsUser[]>({
+  const { isLoading, isSuccess, data } = useQuery<TopDealsUser[]>({
     queryKey: ['topdeals'],
     queryFn: fetchTopDeals,
   });
@@ -27,7 +25,7 @@ const TopDealsBox = () => {
       </span>
       <div className="w-full flex flex-col items-stretch gap-3">
         {isLoading &&
-          tempTotalEntries.map((_item, index) => (
+          placeholderItems.map((_item, index) => (
             <div
               key={index}
               className="w-full flex justify-between items-center h-auto px-1 py-2"
@@ -43,9 +41,9 @@ const TopDealsBox = () => {
             </div>
           ))}
         {isSuccess &&
-          data.map((user: topDealsUser, index: number) => (
+          data.map((user: TopDealsUser, index: number) => (
             <button
-              onClick={() => toast('Oops! Nothing to display for this selection.', { icon: '😠' })}
+              onClick={() => toast('Oops! Nothing to display for this selection.', { icon: 'ℹ️' })}
               key={index}
               className="w-full flex justify-between items-center h-auto btn btn-ghost px-1 py-2"
             >

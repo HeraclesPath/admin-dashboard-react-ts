@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { GridColDef } from '@mui/x-data-grid';
 import DataTable from '../components/DataTable';
 import { fetchUsers } from '../api/ApiCollection';
@@ -7,7 +7,7 @@ import toast from 'react-hot-toast';
 import AddData from '../components/AddData';
 
 const Users = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const { isLoading, isError, isSuccess, data } = useQuery({
     queryKey: ['allusers'],
     queryFn: fetchUsers,
@@ -59,16 +59,6 @@ const Users = () => {
       type: 'string',
       flex: 1,
     },
-    // {
-    //   field: 'fullName',
-    //   headerName: 'Full name',
-    //   description:
-    //     'This column has a value getter and is not sortable.',
-    //   sortable: false,
-    //   width: 160,
-    //   valueGetter: (params: GridValueGetterParams) =>
-    //     `${params.row.firstName || ''} ${params.row.lastName || ''}`,
-    // },
     {
       field: 'verified',
       headerName: 'Verified',
@@ -78,7 +68,7 @@ const Users = () => {
     },
   ];
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isLoading) {
       toast.loading('Loading...', { id: 'promiseUsers' });
     }

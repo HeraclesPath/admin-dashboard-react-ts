@@ -1,12 +1,11 @@
-import React from 'react';
-import axios from 'axios';
+import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
-
-import NoteCard from '../components/notes/NoteCard';
-import { fetchNotes } from '../api/ApiCollection';
 import { HiOutlineXMark } from 'react-icons/hi2';
-// import { allNotes } from '../components/notes/data';
+import { fetchNotes } from '../api/ApiCollection';
+import NoteCard from '../components/notes/NoteCard';
+import axios from 'axios';
+
 
 interface Note {
   id: number;
@@ -18,17 +17,13 @@ interface Note {
 }
 
 const Notes = () => {
-  const [allNotes, setAllNotes] = React.useState([]);
-  const [searchQuery, setSearchQuery] = React.useState('');
-
-  const [noteSelected, setNoteSelected] = React.useState(false);
-  const [selectedCard, setSelectedCard] = React.useState({
-    title: '',
-    body: '',
-  });
-  const [titleSelected, setTitleSelected] = React.useState('');
-  const [bodySelected, setBodySelected] = React.useState('');
-  const [topicSelected, setTopicSelected] = React.useState('');
+  const [allNotes, setAllNotes] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [noteSelected, setNoteSelected] = useState(false);
+  const [selectedCard, setSelectedCard] = useState({ title: '', body: '' });
+  const [titleSelected, setTitleSelected] = useState('');
+  const [bodySelected, setBodySelected] = useState('');
+  const [topicSelected, setTopicSelected] = useState('');
 
   const tempTotalEntries = [1, 2, 3, 4, 5, 6, 7];
 
@@ -37,7 +32,7 @@ const Notes = () => {
     queryFn: fetchNotes,
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isLoading) {
       toast.loading('Loading...', { id: 'promiseNotes' });
     }
@@ -53,16 +48,14 @@ const Notes = () => {
     }
   }, [isError, isLoading, isSuccess]);
 
-  React.useEffect(() => {
-    console.log('Ini datanya:', data);
+  useEffect(() => {
     setAllNotes(data);
-    // console.log('Ini notes nya:', allNotes);
   }, [data]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const fetchSpesificNote = async () => {
       const res = await axios.get(
-        `https://react-admin-ui-v1-api.vercel.app/notes?q=${searchQuery}`
+        `https://localhost:5000/notes?q=${searchQuery}`
       );
       setAllNotes(res.data);
     };
@@ -73,15 +66,10 @@ const Notes = () => {
   }, [searchQuery]);
 
   return (
-    // screen
     <div className="w-full p-0 m-0 relative">
-      {/* container */}
       <div className="w-full flex flex-col items-stretch gap-5 xl:gap-8 relative">
-        {/* grid */}
         <div className="w-full grid xl:grid-cols-5 relative gap-10">
-          {/* column 1 */}
           <div className="w-full flex flex-col gap-7 xl:gap-5 xl:col-span-2">
-            {/* heading */}
             <div className="w-full flex items-center justify-between">
               <h2 className="font-bold text-2xl xl:text-4xl mt-0 pt-0 text-base-content dark:text-neutral-200">
                 Notes
@@ -89,7 +77,6 @@ const Notes = () => {
               <button className="btn btn-primary">+ Add Note</button>
             </div>
 
-            {/* Search Box */}
             <div className="form-control">
               <input
                 type="text"
@@ -101,7 +88,6 @@ const Notes = () => {
               />
             </div>
 
-            {/* listed notes */}
             {isLoading ? (
               tempTotalEntries.map((index: number) => (
                 <div
@@ -134,9 +120,7 @@ const Notes = () => {
             )}
           </div>
 
-          {/* column 2 */}
           <div className="hidden w-full relative xl:inline-block xl:col-span-3 bg-base-100">
-            {/* content */}
             {!noteSelected ? (
               <div className="sticky xl:top-[88px] z-10 xl:h-[80vh] flex justify-center items-center">
                 <h4>Please select one note</h4>
@@ -204,7 +188,6 @@ const Notes = () => {
             )}
           </div>
         </div>
-        {/* mobile only */}
         <div
           onClick={() => {
             setNoteSelected(false);
